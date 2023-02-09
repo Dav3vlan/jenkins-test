@@ -5,7 +5,7 @@ pipeline {
     stages {
         stage('Cron-activated stage') {
             when {
-                expression { env.five }
+                expression { env.BRANCH_NAME == env.BRANCH_NAME.toUpperCase() }
             }
             steps {
                 echo 'This stage only runs when triggered by cron.'
@@ -16,8 +16,8 @@ pipeline {
         stage('Manual stage 1') {
             when {
                 not {
-                 expression { env.five  }
-                
+                    expression { env.BRANCH_NAME == env.BRANCH_NAME.toUpperCase() }
+                }
             }
             steps {
                 echo 'This stage can only be run manually.'
@@ -28,7 +28,7 @@ pipeline {
         stage('Manual stage 2') {
             when {
                 not {
-                    expression { env.five }
+                    expression { env.BRANCH_NAME == env.BRANCH_NAME.toUpperCase() }
                 }
             }
             steps {
@@ -39,7 +39,8 @@ pipeline {
     }
 
     triggers {
-        //test
+        // cron('0 0 1 * *')
         cron('*/5 * * * * %five=true')
+        // cron('0 0 1 * *')
     }
 }
