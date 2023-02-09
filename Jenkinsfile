@@ -16,8 +16,8 @@ pipeline {
         stage('Manual stage 1') {
             when {
                 not {
-                    expression { env.five  }
-                }
+                 expression { env.five  }
+                
             }
             steps {
                 echo 'This stage can only be run manually.'
@@ -40,7 +40,7 @@ pipeline {
 
     triggers {
         //test
-        cron('''
+        parameterizedCron('''
         */5 * * * * %five=true
         ''')
     }
