@@ -39,6 +39,7 @@ pipeline {
     }
 
     triggers {
+        //test
         cron('*/5 * * * *')
     }
 }
