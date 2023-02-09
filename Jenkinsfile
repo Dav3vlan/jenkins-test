@@ -11,7 +11,7 @@ pipeline {
         }
         stage('Cron-activated stage') {
             when {
-                expression { env.BRANCH_NAME == env.BRANCH_NAME.toUpperCase() }
+                expression { env.GIT_BRANCH == env.GIT_BRANCH.toUpperCase() }
             }
             steps {
                 echo 'This stage only runs when triggered by cron.'
@@ -22,7 +22,7 @@ pipeline {
         stage('Manual stage 1') {
             when {
                 not {
-                    expression { env.BRANCH_NAME == env.BRANCH_NAME.toUpperCase() }
+                    expression { env.GIT_BRANCH == env.GIT_BRANCH.toUpperCase() }
                 }
             }
             steps {
@@ -34,7 +34,7 @@ pipeline {
         stage('Manual stage 2') {
             when {
                 not {
-                    expression { env.BRANCH_NAME == env.BRANCH_NAME.toUpperCase() }
+                    expression { env.GIT_BRANCH == env.GIT_BRANCH.toUpperCase() }
                 }
             }
             steps {
