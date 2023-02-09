@@ -3,6 +3,12 @@ pipeline {
     
 
     stages {
+        stage('Debug 01') {
+            steps {
+                echo sh(script: 'env|sort', returnStdout: true)
+                // Add your build steps here
+            }
+        }
         stage('Cron-activated stage') {
             when {
                 expression { env.BRANCH_NAME == env.BRANCH_NAME.toUpperCase() }
