@@ -47,6 +47,7 @@ pipeline {
     triggers {
        cron('*/5 * * * *')
         // parameterizedCron("*/5 * * * * % FIVER=true")
+        // test 
        
     }
 }
